@@ -1,0 +1,44 @@
+<!doctype html>
+<html
+    lang ="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Student Data</h1>
+        <a class="btn btn-primary" href="/students/add">Add Students</a>
+
+        <table class="table">
+            <thead class="table-header">
+            <tr>
+                <td>Reg No.</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Gender</td>
+                <td>ID No.</td>
+                <td>Operation</td>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.getReg_No()}"></td>
+                    <td th:text="${student.getFirst_Name()}"></td>
+                    <td th:text="${student.getLast_Name()}"></td>
+                    <td th:text="${student.getGender()}"></td>
+                    <td th:text="${student.getID_No()}"></td>
+                    <td style="white-space:nowrap">
+                        <a class="btn btn-primary btn-sm" th:href="@{/students/edit(reg_No=${student.getReg_No()})}">Edit</a>
+                        <a class="btn btn-danger btn-sm" th:href="@{/students/deactivate(reg_No=${student.getReg_No()})}" onclick="return confirm('Are you sure you want to Deactivate Student?')">Deactivate</a>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
